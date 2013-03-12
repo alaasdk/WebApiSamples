@@ -1,8 +1,12 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Dependencies;
 using System.Web.Routing;
+using HelloWebApi.Controllers;
 
 namespace HelloWebApi
 {
@@ -10,21 +14,13 @@ namespace HelloWebApi
     {
         public static void Register(HttpConfiguration config)
         {
+            //config.DependencyResolver = new CustomControllerResolver();
             config.Routes.MapHttpRoute(
-              name: "PostsCustomAction",
-              routeTemplate: "api/{controller}/{action}/{id}",
-              defaults: new { id = RouteParameter.Optional }
-          );
-
-            config.Routes.MapHttpRoute(
-                name: "PostByDate",
-                routeTemplate: "api/{controller}/{year}/{month}/{day}",
-                defaults: new { month = RouteParameter.Optional, day = RouteParameter.Optional },
+                name: "Archive",
+                routeTemplate: "api/posts/archive/{year}/{month}/{day}",
+                defaults: new { controller = "Posts", month = RouteParameter.Optional, day = RouteParameter.Optional },
                 constraints: new { month = @"\d{0,2}", day = @"\d{0,2}"}
             );
-
-          
-
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
@@ -33,4 +29,28 @@ namespace HelloWebApi
             );
         }
     }
+
+    //public class CustomControllerResolver : IDependencyResolver
+    //{
+    //    public void Dispose()
+    //    {
+            
+    //    }
+
+    //    public object GetService(Type serviceType)
+    //    {
+    //        if (serviceType == typeof(PostsController))
+    //            return new PostsController(new PostRepository());
+    //    }
+
+    //    public IEnumerable<object> GetServices(Type serviceType)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+
+    //    public IDependencyScope BeginScope()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 }
