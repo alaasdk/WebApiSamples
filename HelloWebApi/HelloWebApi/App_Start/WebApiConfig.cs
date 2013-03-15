@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Dependencies;
 using System.Web.Routing;
 using HelloWebApi.Controllers;
+using HelloWebApi.Formatters;
 
 namespace HelloWebApi
 {
@@ -14,6 +15,8 @@ namespace HelloWebApi
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Formatters.Add(new ImageFormatter()); 
+
             //config.DependencyResolver = new CustomControllerResolver();
             config.Routes.MapHttpRoute(
                 name: "Archive",
