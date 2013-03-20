@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
+using System.Web.Http.ValueProviders;
 using HelloWebApi.Models;
 
 namespace HelloWebApi.Controllers
@@ -37,7 +39,9 @@ namespace HelloWebApi.Controllers
             return _repository.Get(id);
         }
 
-        public HttpResponseMessage Post(Post post)
+        
+        //public HttpResponseMessage Post([ModelBinder(typeof(PostModelBinder))]Post post)
+        public HttpResponseMessage Post([ValueProvider(typeof(HeaderValueFactory))]Post post)
         {
             _repository.Create(post);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
