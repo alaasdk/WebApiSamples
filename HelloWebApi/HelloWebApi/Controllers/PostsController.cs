@@ -40,7 +40,7 @@ namespace HelloWebApi.Controllers
         }
 
         
-        //public HttpResponseMessage Post([ModelBinder(typeof(PostModelBinder))]Post post)
+        //public HttpResponseMessage Post([ModelBinder(typeof(UserModelBinder))]Post post)
         public HttpResponseMessage Post([ValueProvider(typeof(HeaderValueFactory))]Post post)
         {
             _repository.Create(post);

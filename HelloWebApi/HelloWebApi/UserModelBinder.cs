@@ -8,7 +8,7 @@ using HelloWebApi.Models;
 
 namespace HelloWebApi
 {
-    public class PostModelBinder : IModelBinder
+    public class UserModelBinder : IModelBinder
     {
         public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
         {
@@ -20,5 +20,7 @@ namespace HelloWebApi
 
             return true;
         }
+
+
     }
 }
