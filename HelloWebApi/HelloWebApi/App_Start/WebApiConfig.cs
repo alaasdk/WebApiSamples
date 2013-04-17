@@ -15,9 +15,9 @@ namespace HelloWebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            config.Formatters.Add(new ImageFormatter()); 
+            config.Formatters.Add(new ImageFormatter());
 
-            //config.DependencyResolver = new CustomControllerResolver();
+            config.DependencyResolver = new SimpleResolver();
             config.Routes.MapHttpRoute(
                 name: "Archive",
                 routeTemplate: "api/posts/archive/{year}/{month}/{day}",

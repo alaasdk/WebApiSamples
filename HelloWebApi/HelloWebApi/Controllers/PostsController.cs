@@ -18,10 +18,6 @@ namespace HelloWebApi.Controllers
         {
             _repository = repository;
         }
-
-        public PostsController(): this(new PostRepository())
-        {
-        }
         
         public IQueryable<Post> Archive(int year, int month = 0, int day = 0)
         {
@@ -41,7 +37,7 @@ namespace HelloWebApi.Controllers
 
         
         //public HttpResponseMessage Post([ModelBinder(typeof(UserModelBinder))]Post post)
-        public HttpResponseMessage Post([ValueProvider(typeof(HeaderValueFactory))]Post post)
+        public HttpResponseMessage Post(Post post)
         {
             _repository.Create(post);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);

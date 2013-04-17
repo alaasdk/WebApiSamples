@@ -134,6 +134,7 @@
     <Compile Include="BasicAutheticationHandler.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DependencyResolver.cs" />
     <Compile Include="Formatters\ImageFormatter.cs" />
     <Compile Include="IAuthenticationService.cs" />
     <Compile Include="IAuthorRepository.cs" />
